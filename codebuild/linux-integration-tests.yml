@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
+    PACKAGE_NAME: aws-crt-java
+
+phases:
+  install:
+    commands:
+      - sudo add-apt-repository ppa:openjdk-r/ppa
+      - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+      - sudo apt-get update -y
+      - sudo apt-get install cmake -y
+  build:
+    commands:
+      - echo Build started on `date`
+      # Update the submodules
+      - git submodule update --init
+      - export BUILDER_VERSION=$(cat .github/workflows/ci.yml | grep 'BUILDER_VERSION:' | sed 's/\s*BUILDER_VERSION:\s*\(.*\)/\1/')
+      - export BUILDER_SOURCE=$(cat .github/workflows/ci.yml | grep 'BUILDER_SOURCE:' | sed 's/\s*BUILDER_SOURCE:\s*\(.*\)/\1/')
+      - echo "Using builder version='${BUILDER_VERSION}' source='${BUILDER_SOURCE}'"
+      # Build library and test
+      - python3 -c "from urllib.request import urlretrieve; urlretrieve('$BUILDER_HOST/$BUILDER_SOURCE/$BUILDER_VERSION/builder.pyz?run=$CODEBUILD_BUILD_ID', 'builder.pyz')"
+      - python3 builder.pyz build --project aws-crt-java downstream
+  post_build:
+    commands:
+      - echo Build completed on `date`

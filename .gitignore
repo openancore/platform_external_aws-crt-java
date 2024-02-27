@@ -1,0 +1,98 @@
+# Generated headers
+include/aws/jni
+
+# IDE Artifacts
+.metadata
+.build
+.idea
+*.d
+Debug
+Release
+*~
+*#
+*.iml
+tags
+.vscode
+
+#vim swap file
+*.swp
+
+#compiled python files
+*.pyc
+
+#Vagrant stuff
+Vagrantfile
+.vagrant
+
+#Mac stuff
+.DS_Store
+
+#doxygen
+doxygen/html/
+doxygen/latex/
+
+
+#cmake artifacts
+dependencies
+_build
+build
+_build_*
+cmake-build*
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+*.ipr
+*.iws
+
+# Maven
+target/
+
+# Test resources/certs/logs
+*.log
+*.pem
+*.key
+*.crt
+
+# idea stuff
+.classpath
+.project
+.settings/
+
+.gradle/
+local.properties
+
+# configuration pulled from Secrets Manager
+settings.xml
+
+bin/
+log.txt
+# docs are updated automatically by .github/workflows/docs.yml
+docs/
+

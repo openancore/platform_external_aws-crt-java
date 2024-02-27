@@ -1,0 +1,12 @@
+extraction:
+  cpp:
+    prepare:
+      packages:
+        - maven
+    index:
+      build_command: "mvn --batch-mode compile"
+
+path_classifiers:
+  # leave code from submodules out of lgtm results
+  library:
+    - crt
